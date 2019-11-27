@@ -21,7 +21,9 @@
 
   &-link {
     color: $gray-light;
-
+    & + .footer-link{
+      margin-left: $spacer-2;
+    }
     &:hover {
       color: $text-gray;
     }
