@@ -1,25 +1,25 @@
-import * as React from 'react';
-import Link from 'next/link';
-import { NextPage } from 'next';
-import Layout from '../components/Layout/Layout';
-
-import {
-  Button,
-  message
-} from 'antd'
+import * as React from "react";
+import Link from "next/link";
+import { NextPage } from "next";
+import fetch from "isomorphic-unfetch";
+import Layout from "../components/Layout/Layout";
 
 const IndexPage: NextPage = () => (
-  <Layout title="aasa">
+  <Layout title="首页">
     <h1>Hello Next.js 👋</h1>
     <p>
       <Link href="/about">
         <a>About</a>
       </Link>
     </p>
-    <Button type="primary" onClick={
-     e =>message.info('This is an error message')
-    }>button</Button>
+    <p>123156123123</p>
   </Layout>
 );
+IndexPage.getInitialProps = async () => {
+  const res = await fetch("https://v1.jinrishici.com/all.json");
+  const json = await res.json();
+  console.log(json);
+  return { stars: json.stargazers_count };
+};
 
 export default IndexPage;

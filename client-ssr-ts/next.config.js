@@ -5,13 +5,13 @@ const fs = require('fs')
 const path = require('path')
 
 const themeVariables = lessToJS(
-  fs.readFileSync(path.resolve(__dirname, './assets/antd-custom.less'), 'utf8')
+  fs.readFileSync(path.resolve(__dirname, './assets/antd/antd-custom.less'), 'utf8')
 )
 
 const newConfig = {
   lessLoaderOptions: {
     javascriptEnabled: true,
-    modifyVars: themeVariables, 
+    modifyVars: themeVariables,
   },
   webpack: (config, { isServer }) => {
     if (isServer) {
@@ -32,6 +32,15 @@ const newConfig = {
       config.module.rules.unshift({
         test: antStyles,
         use: 'null-loader',
+      })
+      config.module.rules.push({
+        test: /\.(ttf|eot|woff|woff2)$/,
+        use:  [
+        {
+          loader: 'file-loader',
+          options: {},
+        },
+      ]
       })
     }
     config.node = {
