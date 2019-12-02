@@ -1,16 +1,24 @@
-import * as React from "react";
-import Link from "next/link";
-import Head from "next/head";
-import "./Layout.styl";
+import * as React from 'react';
+import Link from 'next/link';
+import Head from 'next/head';
+import './Layout.styl';
 
-import Header from "../Header/Header";
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer'
 
 type LayoutProps = {
   title?: string;
+  poetry?: PoetryType
 };
 
-const Layout: React.FunctionComponent<LayoutProps> = ({ children, title }) => {
-  let defaultTitle = "烟雨不尽夜流离";
+export interface PoetryType {
+  author: string
+  content: string
+  origin: string
+}
+
+const Layout: React.FunctionComponent<LayoutProps> = ({ children, title, poetry }) => {
+  let defaultTitle = '烟雨不尽夜流离';
   title = title ? `${title} | ${defaultTitle}` : defaultTitle;
   return (
     <>
@@ -28,13 +36,14 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children, title }) => {
           type="text/css"
         />
         <link rel="stylesheet" href="fonts/font.css" />
+        <link rel="stylesheet" href="HProgress/HProgress.css" />
+        <script src="HProgress/HProgress.js" />
       </Head>
-      <Header></Header>
+      <script>HProgress.start();</script>
+      <Header poetry={poetry} />
       {children}
-      <footer>
-        <hr />
-        <span>I'm here to stay (Footer)</span>
-      </footer>
+      <Footer />
+      <script>HProgress.done()</script>
     </>
   );
 };

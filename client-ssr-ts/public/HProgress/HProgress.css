@@ -1,0 +1,59 @@
+#hprogress {
+  pointer-events: none;
+}
+#hprogress .bar {
+  background: #24292e;
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+}
+
+/* Fancy blur effect */
+#hprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  box-shadow: 0 0 10px #24292e, 0 0 5px #24292e;
+  opacity: 1;
+  transform: rotate(3deg) translate(0px, -4px);
+}
+#hprogress .spinner {
+  display: block;
+  position: fixed;
+  z-index: 1031;
+  top: 15px;
+  right: 15px;
+}
+
+#hprogress .spinner-icon {
+  width: 24px;
+  height: 24px;
+  box-sizing: border-box;
+  border: solid 3px transparent;
+  border-top-color: #24292e;
+  border-left-color: #24292e;
+  border-radius: 50%;
+  animation: hprogress-spinner 400ms linear infinite;
+}
+.hprogress-custom-parent {
+  overflow: hidden;
+  position: relative;
+}
+
+.hprogress-custom-parent #hprogress .spinner,
+.hprogress-custom-parent #hprogress .bar {
+  position: absolute;
+}
+@keyframes hprogress-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

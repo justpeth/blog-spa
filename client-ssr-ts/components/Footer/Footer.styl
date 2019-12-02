@@ -1,0 +1,31 @@
+@import '../../assets/styles/variables.styl'
+.footer 
+  position absolute
+  left 0
+  bottom 0
+  z-index 1
+  width 100%
+  height 76px
+  color $gray-light
+  line-height 1
+  font-size $font-size-small
+  text-align center
+
+  &-inner
+    padding $spacer-3
+  
+
+  p 
+    min-height 12px
+    margin-bottom 10px
+  
+
+  &-link
+    color: $gray-light
+    text-decoration none
+    & + &
+      margin-left $spacer-2
+    &:hover 
+      color $gray
+    
+  

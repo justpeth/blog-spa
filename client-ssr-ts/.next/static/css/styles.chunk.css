@@ -208,6 +208,15 @@ dd {
 .header .site-name-text {
   line-height: 36px;
 }
+.poetry {
+  padding: 16px 16px 24px;
+  line-height: 1.5;
+  color: #959da5;
+  font-size: 12px;
+  line-height: 2;
+  text-align: center;
+  min-height: 88px;
+}
 .fade-enter,
 .fade-appear {
   opacity: 0.01;
@@ -218,6 +227,36 @@ dd {
   opacity: 1;
   transform: translateY(0);
   transition: all 300ms ease-out;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  height: 76px;
+  color: #959da5;
+  line-height: 1;
+  font-size: 12px;
+  text-align: center;
+}
+.footer-inner {
+  padding: 16px;
+}
+.footer p {
+  min-height: 12px;
+  margin-bottom: 10px;
+}
+.footer-link {
+  color: #959da5;
+  text-decoration: none;
+}
+.footer-link + .footer-link {
+  margin-left: 8px;
+}
+.footer-link:hover {
+  color: #586069;
 }
 
 

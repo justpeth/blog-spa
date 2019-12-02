@@ -88,10 +88,92 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./components/Footer/Footer.styl":
+/*!***************************************!*\
+  !*** ./components/Footer/Footer.styl ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "./components/Footer/Footer.tsx":
+/*!**************************************!*\
+  !*** ./components/Footer/Footer.tsx ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Footer_styl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Footer.styl */ "./components/Footer/Footer.styl");
+/* harmony import */ var _Footer_styl__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Footer_styl__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "F:\\gayhub\\blog\\client-ssr-ts\\components\\Footer\\Footer.tsx";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+const Footer = () => __jsx("div", {
+  className: "footer",
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 6
+  },
+  __self: undefined
+}, __jsx("div", {
+  className: "footer-inner",
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 7
+  },
+  __self: undefined
+}, __jsx("p", {
+  className: "copyright",
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 8
+  },
+  __self: undefined
+}, "Copyright\xA9 2019 By justpeth"), __jsx("p", {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 9
+  },
+  __self: undefined
+}, __jsx("a", {
+  className: "footer-link",
+  href: "http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51010802000779",
+  rel: "noopener noreferrer",
+  target: "_blank",
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 10
+  },
+  __self: undefined
+}, "\u8700\u516C\u7F51\u5B89\u590751010802000779\u53F7"), __jsx("a", {
+  className: "footer-link",
+  href: "http://www.beian.miit.gov.cn/",
+  rel: "noopener noreferrer",
+  target: "_blank",
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 18
+  },
+  __self: undefined
+}, "\u8700ICP\u590719027770\u53F7-1"))));
+
+/* harmony default export */ __webpack_exports__["default"] = (Footer);
+
+/***/ }),
 
 /***/ "./components/Header/Header.styl":
 /*!***************************************!*\
@@ -122,53 +204,59 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Header_styl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Header.styl */ "./components/Header/Header.styl");
 /* harmony import */ var _Header_styl__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Header_styl__WEBPACK_IMPORTED_MODULE_3__);
 var _jsxFileName = "F:\\gayhub\\blog\\client-ssr-ts\\components\\Header\\Header.tsx";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
 
 
-const Header = () => {
+const Header = ({
+  poetry
+}) => {
+  let {
+    0: poetryAni,
+    1: setPoetryAni
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   return __jsx("div", {
     className: "header",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 16
     },
     __self: undefined
   }, __jsx("div", {
     className: "header-line",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 17
     },
     __self: undefined
   }), __jsx("div", {
     className: "header-inner",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 18
     },
     __self: undefined
   }, __jsx("div", {
     className: "site-name",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 12
+      lineNumber: 19
     },
     __self: undefined
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 20
     },
     __self: undefined
   }, __jsx("div", {
     className: "site-name-inner",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 14
+      lineNumber: 21
     },
     __self: undefined
   }, __jsx(react_transition_group__WEBPACK_IMPORTED_MODULE_2__["CSSTransition"], {
@@ -176,23 +264,59 @@ const Header = () => {
     timeout: 300,
     classNames: "fade",
     appear: true,
+    onEntered: () => setPoetryAni(true),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 22
     },
     __self: undefined
   }, __jsx("div", {
     className: "site-name-text",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 23
     },
     __self: undefined
   }, "H\u3002"))))), __jsx("div", {
+    className: "poetry",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 28
+    },
+    __self: undefined
+  }, __jsx(react_transition_group__WEBPACK_IMPORTED_MODULE_2__["CSSTransition"], {
+    in: poetryAni,
+    timeout: 300,
+    classNames: "fade",
+    unmountOnExit: true,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 29
+    },
+    __self: undefined
+  }, __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30
+    },
+    __self: undefined
+  }, __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 31
+    },
+    __self: undefined
+  }, poetry.content), __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 32
+    },
+    __self: undefined
+  }, `——  ${poetry.author} 《${poetry.origin}》`)))), __jsx("div", {
     className: "nav-links-wrapper",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 38
     },
     __self: undefined
   }, __jsx(react_transition_group__WEBPACK_IMPORTED_MODULE_2__["CSSTransition"], {
@@ -203,14 +327,14 @@ const Header = () => {
     ,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22
+      lineNumber: 39
     },
     __self: undefined
   }, __jsx("div", {
     className: "nav-links",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 46
     },
     __self: undefined
   }, __jsx("div", {
@@ -221,20 +345,20 @@ const Header = () => {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 38
+      lineNumber: 55
     },
     __self: undefined
   }, __jsx("div", {
     className: "iconfont icon-search",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 46
+      lineNumber: 63
     },
     __self: undefined
   }), __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 47
+      lineNumber: 64
     },
     __self: undefined
   }, "Search")))))));
@@ -271,6 +395,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layout_styl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Layout.styl */ "./components/Layout/Layout.styl");
 /* harmony import */ var _Layout_styl__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Layout_styl__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Header_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Header/Header */ "./components/Header/Header.tsx");
+/* harmony import */ var _Footer_Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Footer/Footer */ "./components/Footer/Footer.tsx");
 var _jsxFileName = "F:\\gayhub\\blog\\client-ssr-ts\\components\\Layout\\Layout.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
 
@@ -278,29 +403,31 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
 
 
 
+
 const Layout = ({
   children,
-  title
+  title,
+  poetry
 }) => {
-  let defaultTitle = "烟雨不尽夜流离";
+  let defaultTitle = '烟雨不尽夜流离';
   title = title ? `${title} | ${defaultTitle}` : defaultTitle;
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 25
     },
     __self: undefined
   }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 26
     },
     __self: undefined
   }, title), __jsx("meta", {
     charSet: "utf-8",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 27
     },
     __self: undefined
   }), __jsx("meta", {
@@ -308,7 +435,7 @@ const Layout = ({
     content: "initial-scale=1.0, width=device-width",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 28
     },
     __self: undefined
   }), __jsx("link", {
@@ -316,7 +443,7 @@ const Layout = ({
     href: "//at.alicdn.com/t/font_809308_jgfphir9y4.css",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 29
     },
     __self: undefined
   }), __jsx("link", {
@@ -325,7 +452,7 @@ const Layout = ({
     type: "text/css",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 33
     },
     __self: undefined
   }), __jsx("link", {
@@ -333,34 +460,50 @@ const Layout = ({
     href: "fonts/font.css",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 38
     },
     __self: undefined
-  })), __jsx(_Header_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), __jsx("link", {
+    rel: "stylesheet",
+    href: "HProgress/HProgress.css",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 39
     },
     __self: undefined
-  }), children, __jsx("footer", {
+  }), __jsx("script", {
+    src: "HProgress/HProgress.js",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 34
+      lineNumber: 40
     },
     __self: undefined
-  }, __jsx("hr", {
+  })), __jsx("script", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 35
+      lineNumber: 42
     },
     __self: undefined
-  }), __jsx("span", {
+  }, "HProgress.start();"), __jsx(_Header_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    poetry: poetry,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 36
+      lineNumber: 43
     },
     __self: undefined
-  }, "I'm here to stay (Footer)")));
+  }), children, __jsx(_Footer_Footer__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 45
+    },
+    __self: undefined
+  }), __jsx("script", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 46
+    },
+    __self: undefined
+  }, "HProgress.done()"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Layout);
@@ -2381,52 +2524,60 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0__["createElement"];
 
 
 
-const IndexPage = () => __jsx(_components_Layout_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {
-  title: "\u9996\u9875",
+const IndexPage = ({
+  poetry
+}) => __jsx(_components_Layout_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  poetry: poetry,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 8
+    lineNumber: 12
   },
   __self: undefined
 }, __jsx("h1", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 9
+    lineNumber: 13
   },
   __self: undefined
 }, "Hello Next.js \uD83D\uDC4B"), __jsx("p", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 10
+    lineNumber: 14
   },
   __self: undefined
 }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
   href: "/about",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 11
+    lineNumber: 15
   },
   __self: undefined
 }, __jsx("a", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 12
+    lineNumber: 16
   },
   __self: undefined
 }, "About"))), __jsx("p", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 15
+    lineNumber: 19
   },
   __self: undefined
 }, "123156123123"));
 
 IndexPage.getInitialProps = async () => {
-  const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2___default()("https://v1.jinrishici.com/all.json");
+  const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2___default()('https://v1.jinrishici.com/all.json');
   const json = await res.json();
+  let poetry = {
+    content: json.content,
+    origin: json.origin,
+    author: json.author
+  }; // @ts-ignore
+
   console.log(json);
   return {
-    stars: json.stargazers_count
+    poetry
   };
 };
 
@@ -2434,7 +2585,7 @@ IndexPage.getInitialProps = async () => {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!*******************************!*\
   !*** multi ./pages/index.tsx ***!
   \*******************************/
