@@ -1,3 +1,76 @@
+.header {
+  position: relative;
+  z-index: 1;
+  min-height: 345px;
+}
+.header-line {
+  height: 3px;
+  background: #24292e;
+}
+.header-inner {
+  padding: 100px 0 70px;
+}
+.header .site-name {
+  text-align: center;
+  user-select: none;
+  font-size: 0;
+}
+.header .site-name-inner {
+  display: inline-block;
+  padding: 0 16px;
+  font-size: 20px;
+  background: #24292e;
+  color: #fff;
+  font-family: 'justpeth';
+  width: 72px;
+  height: 36px;
+}
+.header .site-name-text {
+  line-height: 36px;
+}
+.header .nav-links {
+  text-align: center;
+  height: 48px;
+}
+.header .nav-link {
+  padding: 0 0 4px;
+  display: inline-block;
+  margin: 0 16px;
+  color: #586069;
+  border-bottom: 1px solid transparent;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.header .nav-link:hover,
+.header .nav-link.active {
+  color: #24292e;
+  border-color: #24292e;
+}
+.header .poetry {
+  padding: 16px 16px 24px;
+  line-height: 1.5;
+  color: #959da5;
+  font-size: 12px;
+  line-height: 2;
+  text-align: center;
+  min-height: 88px;
+}
+.fade-enter,
+.fade-appear {
+  opacity: 0.01;
+  transform: translateY(-30px);
+}
+.fade-enter-active,
+.fade-appear-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 300ms ease-out;
+}
+
+* {
+  box-sizing: border-box;
+}
 html {
   -webkit-text-size-adjust: 100%;
 }
@@ -177,56 +250,6 @@ dd {
 .font {
   font-family: 'justpeth';
   font-size: 32px;
-}
-
-.header {
-  position: relative;
-  z-index: 1;
-}
-.header-line {
-  height: 3px;
-  background: #24292e;
-}
-.header-inner {
-  padding: 100px 0 70px;
-}
-.header .site-name {
-  text-align: center;
-  user-select: none;
-  font-size: 0;
-}
-.header .site-name-inner {
-  display: inline-block;
-  padding: 0 16px;
-  font-size: 20px;
-  background: #24292e;
-  color: #fff;
-  font-family: 'justpeth';
-  width: 72px;
-  height: 36px;
-}
-.header .site-name-text {
-  line-height: 36px;
-}
-.poetry {
-  padding: 16px 16px 24px;
-  line-height: 1.5;
-  color: #959da5;
-  font-size: 12px;
-  line-height: 2;
-  text-align: center;
-  min-height: 88px;
-}
-.fade-enter,
-.fade-appear {
-  opacity: 0.01;
-  transform: translateY(-30px);
-}
-.fade-enter-active,
-.fade-appear-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 300ms ease-out;
 }
 
 .footer {

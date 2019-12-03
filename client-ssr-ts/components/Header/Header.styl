@@ -3,6 +3,7 @@
 .header
   position relative
   z-index 1
+  min-height 345px
 
   &-line
     height 3px
@@ -29,14 +30,32 @@
   .site-name-text
     line-height 36px
 
-.poetry
-  padding $spacer-3 $spacer-3 $spacer-4
-  line-height 1.5
-  color: $gray-light
-  font-size $font-size-small
-  line-height 2
-  text-align center
-  min-height 88px
+  .nav-links
+    text-align center
+    height 48px
+
+  .nav-link
+    padding 0 0 $spacer-1
+    display inline-block
+    margin 0 $spacer-3
+    color $gray
+    border-bottom 1px solid transparent
+    font-size 13px
+    cursor pointer
+    text-decoration none
+
+    &:hover, &.active
+      color $gray-dark
+      border-color $gray-dark
+
+  .poetry
+    padding $spacer-3 $spacer-3 $spacer-4
+    line-height 1.5
+    color $gray-light
+    font-size $font-size-small
+    line-height 2
+    text-align center
+    min-height 88px
 
 .fade-enter, .fade-appear
   opacity 0.01

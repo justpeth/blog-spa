@@ -1,13 +1,17 @@
-import React from "react";
-import Head from "next/head";
-import { ApolloProvider } from "@apollo/react-hooks";
-import { ApolloClient } from "apollo-client";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { HttpLink } from "apollo-link-http";
-import fetch from "isomorphic-unfetch";
-import { NextPage } from "next";
+import React from 'react';
+import Head from 'next/head';
+import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloClient } from 'apollo-client';
+import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
+import { HttpLink } from 'apollo-link-http';
+import fetch from 'isomorphic-unfetch';
+import { NextPage } from 'next';
 
 let apolloClient = null;
+
+interface WithApolloProps {
+  ssr?: boolean;
+}
 
 /**
  * Creates and provides the apolloContext
@@ -17,7 +21,10 @@ let apolloClient = null;
  * @param {Object} [config]
  * @param {Boolean} [config.ssr=true]
  */
-export function withApollo(PageComponent: NextPage, { ssr = true } = {}) {
+export function withApollo(
+  PageComponent: NextPage,
+  { ssr = true }: WithApolloProps
+) {
   const WithApollo = ({ apolloClient, apolloState, ...pageProps }) => {
     const client = apolloClient || initApolloClient(apolloState);
     return (
@@ -27,12 +34,12 @@ export function withApollo(PageComponent: NextPage, { ssr = true } = {}) {
     );
   };
 
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV !== 'production') {
     const displayName =
-      PageComponent.displayName || PageComponent.name || "Component";
+      PageComponent.displayName || PageComponent.name || 'Component';
 
-    if (displayName === "App") {
-      console.warn("This withApollo HOC only works with PageComponents.");
+    if (displayName === 'App') {
+      console.warn('This withApollo HOC only works with PageComponents.');
     }
 
     WithApollo.displayName = `withApollo(${displayName})`;
@@ -49,14 +56,14 @@ export function withApollo(PageComponent: NextPage, { ssr = true } = {}) {
         pageProps = await PageComponent.getInitialProps(ctx);
       }
 
-      if (typeof window === "undefined") {
+      if (typeof window === 'undefined') {
         if (ctx.res && ctx.res.finished) {
           return pageProps;
         }
 
         if (ssr) {
           try {
-            const { getDataFromTree } = await import("@apollo/react-ssr");
+            const { getDataFromTree } = await import('@apollo/react-ssr');
             await getDataFromTree(
               <AppTree
                 pageProps={{
@@ -66,7 +73,7 @@ export function withApollo(PageComponent: NextPage, { ssr = true } = {}) {
               />
             );
           } catch (error) {
-            console.error("Error while running `getDataFromTree`", error);
+            console.error('Error while running `getDataFromTree`', error);
           }
 
           Head.rewind();
@@ -85,8 +92,8 @@ export function withApollo(PageComponent: NextPage, { ssr = true } = {}) {
   return WithApollo;
 }
 
-function initApolloClient(initialState?: any) {
-  if (typeof window === "undefined") {
+function initApolloClient(initialState?: NormalizedCacheObject) {
+  if (typeof window === 'undefined') {
     return createApolloClient(initialState);
   }
 
@@ -101,12 +108,15 @@ function initApolloClient(initialState?: any) {
  * Creates and configures the ApolloClient
  * @param  {Object} [initialState={}]
  */
-function createApolloClient(initialState = {}) {
+function createApolloClient(initialState?: NormalizedCacheObject) {
+  if (!initialState) {
+    initialState = {} as NormalizedCacheObject;
+  }
   return new ApolloClient({
-    ssrMode: typeof window === "undefined",
+    ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-      uri: "http://api.justpeth.com",
-      credentials: "same-origin",
+      uri: 'http://api.justpeth.com',
+      credentials: 'same-origin',
       fetch
     }),
     cache: new InMemoryCache().restore(initialState)

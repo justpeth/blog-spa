@@ -1,23 +1,26 @@
 import * as React from 'react';
-import Link from 'next/link';
 import Head from 'next/head';
 import './Layout.styl';
 
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer'
+import Header from '../Header';
+import Footer from '../Footer';
 
 type LayoutProps = {
   title?: string;
-  poetry?: PoetryType
+  poetry?: PoetryType;
 };
 
 export interface PoetryType {
-  author: string
-  content: string
-  origin: string
+  author: string;
+  content: string;
+  origin: string;
 }
 
-const Layout: React.FunctionComponent<LayoutProps> = ({ children, title, poetry }) => {
+const Layout: React.FunctionComponent<LayoutProps> = ({
+  children,
+  title,
+  poetry
+}) => {
   let defaultTitle = '烟雨不尽夜流离';
   title = title ? `${title} | ${defaultTitle}` : defaultTitle;
   return (
