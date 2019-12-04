@@ -1,13 +1,15 @@
-import * as React from 'react';
-import Head from 'next/head';
-import './Layout.styl';
+import * as React from "react";
+import Head from "next/head";
+import "./Layout.styl";
 
-import Header from '../Header';
-import Footer from '../Footer';
+import Header from "../Header";
+import Footer from "../Footer";
 
 type LayoutProps = {
   title?: string;
   poetry?: PoetryType;
+  footer?: boolean;
+  header?: boolean;
 };
 
 export interface PoetryType {
@@ -19,9 +21,11 @@ export interface PoetryType {
 const Layout: React.FunctionComponent<LayoutProps> = ({
   children,
   title,
-  poetry
+  poetry,
+  header = true,
+  footer = true
 }) => {
-  let defaultTitle = '烟雨不尽夜流离';
+  let defaultTitle = "烟雨不尽夜流离";
   title = title ? `${title} | ${defaultTitle}` : defaultTitle;
   return (
     <>
@@ -38,14 +42,23 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
           rel="stylesheet"
           type="text/css"
         />
-        <link rel="stylesheet" href="fonts/font.css" />
-        <link rel="stylesheet" href="HProgress/HProgress.css" />
-        <script src="HProgress/HProgress.js" />
+        <link rel="stylesheet" href="/fonts/font.css" />
+        <link rel="stylesheet" href="/HProgress/HProgress.css" />
+        <script src="/HProgress/HProgress.js" />
       </Head>
       <script>HProgress.start();</script>
-      <Header poetry={poetry} />
-      {children}
-      <Footer />
+      {header && footer ? (
+        <div className="blog-mian">
+          {header && <Header poetry={poetry} />}
+          {children}
+          {footer && <Footer />}
+        </div>
+      ) : (
+        <>
+          { children }
+        </>
+      )}
+
       <script>HProgress.done()</script>
     </>
   );

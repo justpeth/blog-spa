@@ -3,3 +3,23 @@
 .font
   font-family 'justpeth'
   font-size $h1-size
+.blog-mian
+  position relative
+  min-height 100vh
+  overflow hidden
+  padding-bottom 90px
+.front
+  max-width 750px
+  margin 0 auto
+  padding 0 $spacer-4
+
+.article-enter,
+.article-appear
+  opacity 0.01
+  transform translateY(-40px);
+
+.article-enter-active,
+.article-appear-active
+  opacity 1
+  transform translateY(0)
+  transition all 300ms ease-out

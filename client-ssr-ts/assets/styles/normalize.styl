@@ -10,7 +10,7 @@ body
   margin 0
   line-height $body-line-height
   font-szie $body-font-size
-  font-family 'Zilla Slab'
+  font-family 'Zilla Slab' !important
 
 h1
   font-size $h1-size
@@ -156,3 +156,13 @@ ul, ol
 
 dd
   margin-left 0
+
+@media (max-width: 750px)
+  h1
+  font-size $h1-size-mobile
+
+  h2
+    font-size $h2-size-mobile
+
+  h3
+    font-size $h3-size-mobile
