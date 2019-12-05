@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link'
 import { CSSTransition } from 'react-transition-group';
 import { PoetryType } from '../Layout';
 import Hicon from '../Hicon'
@@ -16,7 +17,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({ poetry }) => {
       <div className="header-line" />
       <div className="header-inner">
         <div className="site-name">
-          <a href="/">
+          {/* <a href="/">
             <div className="site-name-inner">
               <CSSTransition
                 in
@@ -28,7 +29,20 @@ const Header: React.FunctionComponent<HeaderProps> = ({ poetry }) => {
                 <div className="site-name-text">H。</div>
               </CSSTransition>
             </div>
-          </a>
+          </a> */}
+          <Link href='/'>
+            <div className="site-name-inner">
+              <CSSTransition
+                in
+                timeout={300}
+                classNames="fade"
+                appear
+                onEntered={() => setPoetryAni(true)}
+              >
+                <div className="site-name-text">H。</div>
+              </CSSTransition>
+            </div>
+          </Link>
         </div>
         <div className="poetry">
           <CSSTransition

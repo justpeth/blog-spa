@@ -902,10 +902,20 @@
   resolved "https://registry.npm.taobao.org/@csstools/convert-colors/download/@csstools/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha1-rUldxBsS511YjG24uYNPCPoTHrc=
 
+"@types/cookie@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.npm.taobao.org/@types/cookie/download/@types/cookie-0.3.3.tgz#85bc74ba782fb7aa3a514d11767832b0e3bc6803"
+  integrity sha1-hbx0ungvt6o6UU0RdngysOO8aAM=
+
 "@types/node@>=6", "@types/node@^12.12.14":
   version "12.12.14"
   resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-12.12.14.tgz#1c1d6e3c75dba466e0326948d56e8bd72a1903d2"
   integrity sha1-HB1uPHXbpGbgMmlI1W6L1yoZA9I=
+
+"@types/object-assign@^4.0.30":
+  version "4.0.30"
+  resolved "https://registry.npm.taobao.org/@types/object-assign/download/@types/object-assign-4.0.30.tgz#8949371d5a99f4381ee0f1df0a9b7a187e07e652"
+  integrity sha1-iUk3HVqZ9Dge4PHfCpt6GH4H5lI=
 
 "@types/prop-types@*":
   version "15.7.3"
@@ -2117,7 +2127,7 @@ convert-source-map@1.7.0, convert-source-map@^1.1.0:
   dependencies:
     safe-buffer "~5.1.1"
 
-cookie@0.4.0:
+cookie@0.4.0, cookie@^0.4.0:
   version "0.4.0"
   resolved "https://registry.npm.taobao.org/cookie/download/cookie-0.4.0.tgz#beb437e7022b3b6d49019d088665303ebe9c14ba"
   integrity sha1-vrQ35wIrO21JAZ0IhmUwPr6cFLo=
@@ -3616,6 +3626,11 @@ jest-worker@24.9.0:
     merge-stream "^2.0.0"
     supports-color "^6.1.0"
 
+js-cookie@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.npm.taobao.org/js-cookie/download/js-cookie-2.2.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fjs-cookie%2Fdownload%2Fjs-cookie-2.2.1.tgz#69e106dc5d5806894562902aa5baec3744e9b2b8"
+  integrity sha1-aeEG3F1YBolFYpAqpbrsN0Tpsrg=
+
 js-levenshtein@^1.1.3:
   version "1.1.6"
   resolved "https://registry.npm.taobao.org/js-levenshtein/download/js-levenshtein-1.1.6.tgz#c6cee58eb3550372df8deb85fad5ce66ce01d59d"
@@ -4194,6 +4209,13 @@ neo-async@^2.5.0, neo-async@^2.6.1:
   version "2.6.1"
   resolved "https://registry.npm.taobao.org/neo-async/download/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha1-rCetpmFn+ohJpq3dg39rGJrSCBw=
+
+next-cookies@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.npm.taobao.org/next-cookies/download/next-cookies-2.0.3.tgz#5a3eabcb6afa9b4d4ade69dfaaad749d16cd4a9a"
+  integrity sha1-Wj6ry2r6m01K3mnfqq10nRbNSpo=
+  dependencies:
+    universal-cookie "^4.0.2"
 
 next@latest:
   version "9.1.4"
@@ -6889,6 +6911,16 @@ unique-slug@^2.0.0:
   integrity sha1-uqvOkQg/xk6UWw861hPiZPfNTmw=
   dependencies:
     imurmurhash "^0.1.4"
+
+universal-cookie@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.npm.taobao.org/universal-cookie/download/universal-cookie-4.0.2.tgz#c3398a64c72ff0c31fecb1ac4966c424e8669c6d"
+  integrity sha1-wzmKZMcv8MMf7LGsSWbEJOhmnG0=
+  dependencies:
+    "@types/cookie" "^0.3.3"
+    "@types/object-assign" "^4.0.30"
+    cookie "^0.4.0"
+    object-assign "^4.1.1"
 
 unpipe@1.0.0:
   version "1.0.0"
