@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { PoetryType } from '../Layout';
-
+import Hicon from '../Hicon'
 import './Header.styl';
 
 interface HeaderProps {
@@ -53,11 +53,13 @@ const Header: React.FunctionComponent<HeaderProps> = ({ poetry }) => {
           >
             <div className="nav-links">
               <a href="/archive" className="nav-link">
-                <div className="iconfont icon-archive"/>
+                {/* <div className="iconfont icon-archive"/> */}
+                <Hicon type='icon-archive' />
                 <div>Archive</div>
               </a>
               <a href="/tags" className="nav-link">
-                <div className="iconfont icon-tag"/>
+                {/* <div className="iconfont icon-tag"/> */}
+                <Hicon type='icon-tag' />
                 <div>Tags</div>
               </a>
               <div
@@ -68,7 +70,8 @@ const Header: React.FunctionComponent<HeaderProps> = ({ poetry }) => {
                   // }
                 }}
               >
-                <div className="iconfont icon-search"/>
+                {/* <div className="iconfont icon-search"/> */}
+                <Hicon type='icon-search' />
                 <div>Search</div>
               </div>
             </div>
