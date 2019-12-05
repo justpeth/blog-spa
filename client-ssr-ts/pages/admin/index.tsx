@@ -1,11 +1,12 @@
-import * as React from "react";
-import { NextPage } from "next";
+import * as React from 'react';
+import { NextPage } from 'next';
 
-import {Dashboard} from '../../components';
+import { Dashboard, Editor } from '../../components';
 
 const AdminPage: NextPage = () => (
-  <Dashboard></Dashboard>
+  <Dashboard>
+    <Editor></Editor>
+  </Dashboard>
 );
-
 
 export default AdminPage

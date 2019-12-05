@@ -8,7 +8,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "lint": "tslint --fix  -c tslint.json --project tsconfig.json \"components/**/*.ts?(x)\" \"pages/**/*.ts?(x)\" \"apollo/**/*.ts?(x)\""
+    "lint": "tslint --fix  -c tslint.json --project tsconfig.json \"components/**/*.ts?(x)\" \"pages/**/*.ts?(x)\" \"apollo/**/*.ts?(x)\" \"utils/**/*.ts?(x)\""
   },
   "dependencies": {
     "@apollo/react-hooks": "3.0.0",

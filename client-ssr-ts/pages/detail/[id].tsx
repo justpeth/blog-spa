@@ -1,8 +1,8 @@
-import * as React from "react";
-import { NextPage } from "next";
+import * as React from 'react';
+import { NextPage } from 'next';
 
-import { Layout, PoetryType } from "../../components";
-import fetch from "isomorphic-unfetch";
+import { Layout, PoetryType } from '../../components';
+import fetch from 'isomorphic-unfetch';
 
 interface ArticlePageProps {
   id: string
@@ -17,7 +17,7 @@ const ArticlePage: NextPage<ArticlePageProps> = ({ id, poetry }) => (
 
 ArticlePage.getInitialProps = async ({query}) => {
   let id = query.id as string
-  const res = await fetch("https://v1.jinrishici.com/all.json");
+  const res = await fetch('https://v1.jinrishici.com/all.json');
   const json = await res.json();
   let poetry: PoetryType = {
     content: json.content,

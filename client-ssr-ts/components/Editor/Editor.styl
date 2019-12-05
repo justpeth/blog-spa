@@ -1,0 +1,88 @@
+@import '../../assets/styles/variables.styl'
+.h-editor
+  position relative
+  display flex
+  flex-direction column
+  width 100%
+  height 100%
+  min-height 0
+  padding-bottom 1px
+  border 1px solid $border-color
+  border-radius $border-radius
+  background #fff
+
+  &.full
+    width 100%
+    height 100% !important
+    position fixed
+    left 0px
+    top 0px
+    z-index 1000
+
+  &-navigation
+    display flex
+    flex-direction row
+    min-height 38px
+    padding: 0 $spacer-2
+    border-bottom 1px solid $border-color
+    font-size: 16px
+    background: $gray-lighter
+    user-select none
+  &-navigation-nav
+    display flex
+    flex-direction row
+    align-items center
+    justify-content center
+    font-size 14px
+    color $gray
+  &-button-wrap
+    display flex
+    flex-direction row
+    flex-wrap wrap
+  &-button
+    position relative
+    display flex
+    align-items center
+    justify-content center
+    min-width 24px
+    height 28px
+    margin-right 5px
+    cursor pointer
+    text-align center
+    color $gray-light
+    transition all .3s ease-in
+    font-size 18px
+    &:hover
+      color $gray
+
+.h-drop-wrap
+  display block
+  position absolute
+  left 0
+  top 28px
+  z-index 2
+  min-width 20px
+  padding 10px 0
+  text-align center
+  background-color #fff
+  border 1px solid #f1f1f1
+  border-right-color #ddd
+  border-bottom-color #ddd
+  &.hidden
+    display none !important
+
+.h-table-list
+  position relative
+  margin 0 10px
+  box-sizing border-box
+  .list-item
+    position absolute
+    top 0
+    left 0
+    display inline-block
+    width 20px
+    height 20px
+    background-color rgb(224, 224, 224)
+    border-radius 3px
+    &.active
+      background rgb(180, 180, 180)

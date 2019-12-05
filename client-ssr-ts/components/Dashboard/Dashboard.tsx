@@ -5,15 +5,21 @@ import "./Dashboard.styl";
 
 import { Layout, Menu, Breadcrumb, Icon } from "antd";
 
-const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
+const { Header, Content, Sider } = Layout;
 
-const Dashboard: React.FunctionComponent = () => {
+const Dashboard: React.FunctionComponent = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
   return (
     <BlogLayout title="控制台" footer={false} header={false}>
       <Layout style={{ height: "100vh" }}>
-        <Sider theme="light" trigger={null} collapsible collapsed={collapsed} width={150} className="darshboard-sider">
+        <Sider
+          theme="light"
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          width={150}
+          className="darshboard-sider"
+        >
           <div className="dashboard-logo">H。</div>
           <Menu mode="inline" defaultSelectedKeys={["1"]}>
             <Menu.Item key="1">
@@ -45,16 +51,7 @@ const Dashboard: React.FunctionComponent = () => {
             />
             <span className="dashboard-sitename">烟雨不尽夜流离</span>
           </Header>
-          <Content
-            style={{
-              margin: "24px 16px",
-              padding: 24,
-              background: "#fff",
-              minHeight: 280
-            }}
-          >
-            Content
-          </Content>
+          <Content className="dashboard-content">{children}</Content>
         </Layout>
       </Layout>
     </BlogLayout>
