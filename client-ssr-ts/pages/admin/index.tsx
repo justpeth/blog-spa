@@ -5,7 +5,7 @@ import { Dashboard, Editor } from '../../components';
 
 const AdminPage: NextPage = () => (
   <Dashboard>
-    <Editor></Editor>
+    <Editor value=''></Editor>
   </Dashboard>
 );
 

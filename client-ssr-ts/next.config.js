@@ -1,5 +1,6 @@
 const withStylus = require('@zeit/next-stylus');
 const withLess = require('@zeit/next-less')
+const withCSS = require('@zeit/next-css')
 const lessToJS = require('less-vars-to-js')
 const fs = require('fs')
 const path = require('path')
@@ -50,4 +51,4 @@ const newConfig = {
     return config
   }
 };
-module.exports = withStylus(withLess(newConfig));
+module.exports = withStylus(withLess(withCSS(newConfig)));

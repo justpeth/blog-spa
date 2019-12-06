@@ -1,21 +1,69 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import { Icon } from "antd";
 import clsx from "clsx";
+import * as qiniu from 'qiniu-js'
+
+import MarkdownIt from 'markdown-it'
+import emoji from 'markdown-it-emoji'
+import subscript from 'markdown-it-sub'
+import superscript from 'markdown-it-sup'
+import footnote from 'markdown-it-footnote'
+import deflist from 'markdown-it-deflist'
+import abbreviation from 'markdown-it-abbr'
+import insert from 'markdown-it-ins'
+import mark from 'markdown-it-mark'
+import tasklists from 'markdown-it-task-lists'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/atom-one-light.css'
+
 import Hicon from "../Hicon";
 import * as tool from "../../utils/tool";
 import Decorate from "../../utils/decorate";
 import _config from "./editorConfig";
 import DropList from "./DropList";
 import TableList from "./TableList";
+import InputFile from "./InputFile";
 import "./Editor.styl";
+
+interface HtmlRenderProps {
+  html?: string;
+  className?: string;
+}
+
+export class HtmlRender extends React.Component<HtmlRenderProps> {
+  render() {
+    return (
+      <div
+        dangerouslySetInnerHTML={{ __html: this.props.html }}
+        className={`custom-html-style ${this.props.className || ""}`}
+      />
+    );
+  }
+}
+
+interface HtmlCodeProps {
+  className?: string;
+  html?: string;
+}
+
+class HtmlCode extends React.Component<HtmlCodeProps> {
+  render() {
+    return (
+      <textarea
+        className={`html-code ${this.props.className || ""}`}
+        value={this.props.html}
+        onChange={() => {}}
+      ></textarea>
+    );
+  }
+}
 
 interface EditorProps {
   name?: string;
   value?: string;
-  renderHTML?: (text: string) => string | Promise<string>;
   style?: React.CSSProperties;
   config?: {
-    theme?: string;
     view?: {
       menu: boolean;
       md: boolean;
@@ -24,9 +72,6 @@ interface EditorProps {
     };
     htmlClass?: string;
     markdownClass?: string;
-    logger?: {
-      interval: number;
-    };
     syncScrollMode?: Array<string>;
     imageUrl?: string;
     imageAccept?: string;
@@ -35,7 +80,6 @@ interface EditorProps {
       maxRow: number;
       maxCol: number;
     };
-    clearTip?: string;
   };
   onChange?: (
     data: {
@@ -44,7 +88,7 @@ interface EditorProps {
     },
     event: any
   ) => void;
-  onImageUpload?: (file: File, callback: (url: string) => void) => void;
+  // onImageUpload?: (file: File, callback: (url: string) => void) => void;
   onBeforeClear?: () => boolean | Promise<boolean>;
 }
 
@@ -76,6 +120,7 @@ class Editor extends React.Component<EditorProps, any> {
     end: number;
     text: string;
   };
+  mdParser: any;
   static defaultProps = {
     onBeforeClear: function() {
       return new Promise(resolve => {
@@ -138,6 +183,28 @@ class Editor extends React.Component<EditorProps, any> {
             this.nodeMdPreviewWraper.scrollTop * this.scale;
       }
     }, 1000 / 60);
+    this.mdParser = new MarkdownIt({
+      html: true,
+      linkify: true,
+      typographer: true,
+      highlight: function(str, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+          try {
+            return hljs.highlight(lang, str).value;
+          } catch (__) {}
+        }
+        return ""; // use external default escaping
+      }
+    })
+      .use(emoji)
+      .use(subscript)
+      .use(superscript)
+      .use(footnote)
+      .use(deflist)
+      .use(abbreviation)
+      .use(insert)
+      .use(mark)
+      // .use(tasklists, { enabled: this.taskLists });
   }
 
   initConfig() {
@@ -158,12 +225,13 @@ class Editor extends React.Component<EditorProps, any> {
     });
   }
   _handleImageUpload() {
-    const { onImageUpload } = this.props;
-    if (typeof onImageUpload === "function") {
-      this.inputFile && this.inputFile.click();
-    } else {
-      this.handleDecorate("image");
-    }
+    this.inputFile && this.inputFile.click();
+    // const { onImageUpload } = this.props;
+    // if (typeof onImageUpload === "function") {
+    //   this.inputFile && this.inputFile.click();
+    // } else {
+    //   this.handleDecorate("image");
+    // }
   }
   _handleChange(e: any) {
     e.persist();
@@ -221,11 +289,7 @@ class Editor extends React.Component<EditorProps, any> {
     });
   }
   renderHTML(markdownText: string) {
-    if (!this.props.renderHTML) {
-      console.error("renderHTML props must be required!");
-      return;
-    }
-    const res = this.props.renderHTML(markdownText);
+    const res = this.mdParser.render(markdownText)
     if (typeof res === "string") {
       return Promise.resolve(res);
     } else if (typeof res === "function") {
@@ -268,6 +332,9 @@ class Editor extends React.Component<EditorProps, any> {
       this._setMdText(content);
     }
   }
+  handleScrollEle(node: "md" | "html") {
+    this.willScrollEle = node;
+  }
   _clearSelection() {
     this.selection = Object.assign({}, initialSelection);
   }
@@ -299,9 +366,78 @@ class Editor extends React.Component<EditorProps, any> {
       dropButton: { ...dropButton, [type]: flag }
     });
   }
+  onImageChanged(file: any) {
+    console.log(file)
+    // const { onImageUpload } = this.props;
+    // onImageUpload(file, imageUrl => {
+    //   this.handleDecorate("image", { target: file.name, imageUrl });
+    // });
+  }
+
   render() {
     let { dropButton, table, fullScreen } = this.state;
     let editorClsString = clsx("h-editor", { full: fullScreen });
+    const renderContent = () => {
+      const { html, text, view, htmlType } = this.state;
+      const res = [];
+      if (view.md) {
+        res.push(
+          <section className="h-editor-md" key="md">
+            <textarea
+              id="textarea"
+              name={this.props.name || "textarea"}
+              ref={node => (this.nodeMdText = node)}
+              value={text}
+              className={`input ${this.config.markdownClass || ""}`}
+              wrap="hard"
+              onChange={this.handleChange}
+              onSelect={this.handleInputSelect}
+              onScroll={this.handleInputScroll}
+              onMouseOver={() => this.handleScrollEle("md")}
+            />
+          </section>
+        );
+      }
+      if (view.html) {
+        res.push(
+          <section className="h-editor-html" key="html">
+            {htmlType === "render" ? (
+              <div
+                className="html-wrap"
+                ref={node => (this.nodeMdPreviewWraper = node)}
+                onMouseOver={() => this.handleScrollEle("html")}
+                onScroll={this.handlePreviewScroll}
+              >
+                <HtmlRender
+                  html={html}
+                  className={this.config.htmlClass}
+                  ref={node =>
+                    (this.nodeMdPreview = ReactDOM.findDOMNode(node))
+                  }
+                />
+              </div>
+            ) : (
+              <div
+                className={"html-code-wrap"}
+                ref={node =>
+                  (this.nodeMdPreviewWraper = ReactDOM.findDOMNode(node))
+                }
+                onScroll={this.handlePreviewScroll}
+              >
+                <HtmlCode
+                  html={html}
+                  className={this.config.htmlClass}
+                  ref={node =>
+                    (this.nodeMdPreview = ReactDOM.findDOMNode(node))
+                  }
+                />
+              </div>
+            )}
+          </section>
+        );
+      }
+      return res;
+    };
     return (
       <div className={editorClsString}>
         {/* 编辑器菜单 */}
@@ -403,12 +539,36 @@ class Editor extends React.Component<EditorProps, any> {
                   }}
                 />
               </span>
-
-              {/* <Icon type="file-image" /> */}
-              <span className="h-editor-button" title="链接" onClick={() => this.handleDecorate('link')}><Icon type="link" /></span>
               <span
                 className="h-editor-button"
-                title={fullScreen ? '退出全屏': '全屏'}
+                title="上传图片"
+                onClick={this.handleImageUpload}
+                style={{ position: "relative" }}
+              >
+                <Hicon type="icon-pic" />
+                <InputFile
+                  accept={this.config.imageAccept || ""}
+                  ref={input => {
+                    this.inputFile = input;
+                  }}
+                  onChange={e => {
+                    e.persist();
+                    const file = e.target.files[0];
+                    this.onImageChanged(file);
+                  }}
+                />
+              </span>
+              {/* <Icon type="file-image" /> */}
+              <span
+                className="h-editor-button"
+                title="链接"
+                onClick={() => this.handleDecorate("link")}
+              >
+                <Icon type="link" />
+              </span>
+              <span
+                className="h-editor-button"
+                title={fullScreen ? "退出全屏" : "全屏"}
                 onClick={this.handleToggleFullScreen}
               >
                 {fullScreen ? (
@@ -421,6 +581,7 @@ class Editor extends React.Component<EditorProps, any> {
           </div>
         </div>
         {/* 编辑器展示区域 */}
+        <div className="h-editor-container">{renderContent()}</div>
       </div>
     );
   }
