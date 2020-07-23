@@ -12,7 +12,7 @@ import DashboardLogin from './dashboardLogin';
 import DashboardArchives from './dashboardArchives';
 import DashboardTags from './dashboardTags';
 import DashboardRegister from './dashboardRegister';
-
+import TestEditor from './test-editor'
 
 export {
   Home,
@@ -28,5 +28,6 @@ export {
   DashboardArchives,
   DashboardTags,
   DashboardRegister,
-  ArticleEdit
+  ArticleEdit,
+  TestEditor
 }
