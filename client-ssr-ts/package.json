@@ -41,7 +41,7 @@
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
     "markdown-it-task-lists": "^2.1.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "next": "latest",
     "next-cookies": "^2.0.3",
     "null-loader": "^3.0.0",
